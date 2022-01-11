@@ -6,6 +6,8 @@ const INITIAL_STATE = {
 
 function wallet(state = INITIAL_STATE, action) {
   switch (action.type) {
+  // case LOGIN_USER:
+  //   return { ...state, email: action.payload };
   default:
     return state;
   }
