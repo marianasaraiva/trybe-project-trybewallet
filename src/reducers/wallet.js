@@ -10,6 +10,11 @@ function wallet(state = INITIAL_STATE, action) {
   switch (action.type) {
   case GET_CURRENCIES:
     return { ...state, currencies: action.payload };
+  // case GET_CURRENCIES:
+  //   return {
+  //     ...state,
+  //     expenses: [...state.expenses, action.payload],
+  //   };
   // case GET_EXPENSIE:
   //   return { ...state, expensies: action.payload };
   // case GET_CURRENCIES:

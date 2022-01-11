@@ -115,8 +115,8 @@ export class Forms extends Component {
 
         <button
           type="button"
-          data-testid="total-field"
           onClick={ () => {
+            // setFetchAPI: {id, value, description, currency, method, tag, exchangeRates }
             setFetchAPI(this.state);
             this.setState((prevState) => ({ id: prevState.id + 1 }));
           } }
