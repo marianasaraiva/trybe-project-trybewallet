@@ -8,7 +8,6 @@ import Header from '../components/Header';
 class Wallet extends React.Component {
   componentDidMount() {
     const { walletData } = this.props;
-    // console.log(walletData());
     walletData();
   }
 

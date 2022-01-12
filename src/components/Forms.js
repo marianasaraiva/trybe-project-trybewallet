@@ -1,39 +1,44 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { fetchAPICurrencies, getExpenses } from '../actions';
+
+const task = 'Alimentação';
 
 export class Forms extends Component {
   constructor() {
     super();
     this.state = {
-      // id: 0,
+      id: 0,
       value: '',
       description: '',
-      currency: '',
-      method: '',
-      tag: '',
-      // exchangeRates: [],
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: task,
+      exchangeRates: [],
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.setResultAPISelect();
-  //   // const { setFetchAPI } = this.props;
-  //   // setFetchAPI();
-  // }
-
-  // setResultAPISelect() {
-  //   requestFetchAPI()
-  //     .then((response) => {
-  //       const result = Object.keys(response);
-  //       this.setState({ arrayCurrencies: result });
-  //     });
-  // }
+  handleClick = async () => {
+    const { id } = this.state;
+    const { dataWalletState, expenses, currencies } = this.props;
+    await currencies();
+    // this.setState({ exchangeRates: dataWalletState });
+    expenses({ ...this.state, exchangeRates: dataWalletState });
+    this.setState({
+      id: id + 1,
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: task,
+      exchangeRates: [],
+    });
+  }
 
   handleChange({ target }) {
     const { name, value } = target;
-    // fazer ternario para pegar o selected para ver se é um option e se está selecionado
     this.setState({
       [name]: value,
     });
@@ -41,7 +46,6 @@ export class Forms extends Component {
 
   render() {
     const { dataWalletState } = this.props;
-    console.log(dataWalletState);
     const { value, description, currency, method, tag } = this.state;
 
     return (
@@ -94,9 +98,9 @@ export class Forms extends Component {
             id="method-input"
             onChange={ this.handleChange }
           >
-            <option value="dinheiro">Dinheiro</option>
-            <option value="credito">Cartão de crédito</option>
-            <option value="debito">Cartão de débito</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+            <option value="Cartão de débito">Cartão de débito</option>
           </select>
         </label>
 
@@ -109,11 +113,11 @@ export class Forms extends Component {
             id="tag-input"
             onChange={ this.handleChange }
           >
-            <option value="alimentacao">Alimentação</option>
-            <option value="lazer">Lazer</option>
-            <option value="trabalho">Trabalho</option>
-            <option value="transporte">Transporte</option>
-            <option value="saude">Saúde</option>
+            <option value="Alimentação">{ task }</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Saúde">Saúde</option>
           </select>
         </label>
 
@@ -121,11 +125,7 @@ export class Forms extends Component {
           type="button"
           name="button-add"
           id="button-add"
-          // onClick={ () => {
-          //   setFetchAPI(this.state);
-          //   // setFetchAPI({ id, value, description, currency, method, tag, exchangeRates });
-          //   this.setState((prevState) => ({ id: prevState.id + 1 }));
-          // } }
+          onClick={ this.handleClick }
         >
           Adicionar despesa
         </button>
@@ -138,13 +138,15 @@ const mapStateToProps = (state) => ({
   dataWalletState: state.wallet.currencies,
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-//   setFetchAPI: (state) => dispatch(fetchAPICurrencies(state)),
-//   // salvarEstadoGlobal:
-// });
+const mapDispatchToProps = (dispatch) => ({
+  currencies: () => dispatch(fetchAPICurrencies()),
+  expenses: (state) => dispatch(getExpenses(state)),
+});
 
 Forms.propTypes = {
   dataWalletState: PropTypes.arrayOf(PropTypes.object).isRequired,
+  expenses: PropTypes.func.isRequired,
+  currencies: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(Forms);
+export default connect(mapStateToProps, mapDispatchToProps)(Forms);
