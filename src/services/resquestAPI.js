@@ -3,3 +3,4 @@ const requestFetchAPI = () => fetch('https://economia.awesomeapi.com.br/json/all
   .then((data) => data);
 
 export default requestFetchAPI;
+// console.log(requestFetchAPI());

@@ -2,36 +2,30 @@
 import requestFetchAPI from '../services/resquestAPI';
 
 export const LOGIN_USER = 'LOGIN_USER';
-export const GET_CURRENCIES = 'GET_CURRENCIES';
-
 export const loginUser = (payload) => ({ type: LOGIN_USER, payload });
-export const getCurrencies = (payload) => ({ type: GET_CURRENCIES, payload });
 
-export function fetchAPICurrencies() {
-  return (dispatch) => requestFetchAPI()
-    .then((data) => dispatch(getCurrencies(data)));
-}
+export const REQUEST_API = 'REQUEST_API';
+export const requestAPI = () => ({ type: REQUEST_API });
 
-// export function fetchAPICurrencies() {
-//   return (dispatch) => fetch('https://economia.awesomeapi.com.br/json/all')
-//     .then((response) => response.json())
-//     .then((data) => dispatch(getCurrencies(data)));
-// }
+export const GET_DATA_API = 'GET_DATA_API';
+export const getDataAPI = (payload) => ({ type: GET_DATA_API, payload });
 
-// export function fetchAPICurrencies() {
-//   return (dispatch) => fetch('https://economia.awesomeapi.com.br/json/all')
-//     .then((response) => response.json())
-//     .then((data) => {
-//       const currenciesArr = Object.values(data);
-//       // filtrando para retirr o dolar turismo da API.
-//       const filterUSDT = currenciesArr.filter((e) => e.codein !== 'BRLT');
-//       dispatch(getCurrencies(filterUSDT));
+export const GET_EXPENSES = 'GET_EXPENSES';
+export const getExpenses = (payload) => ({ type: GET_EXPENSES, payload });
 
-//       const coinsArr = Object.keys(data);
-//       dispatch(setRequestCoins(coinsArr));
+export const fetchAPICurrencies = () => (dispatch) => {
+  dispatch(requestAPI());
+  requestFetchAPI()
+    .then((data) => {
+      dispatch(getDataAPI(data));
+    });
+};
 
-//       // const expensieArr = Object.values(data);
-//       // // expensieArr.map((obj) => )
-//       // dispatch(getExpensie(expensieArr));
-//     });
-// }
+// Monitoria p/ corrigir o bug
+// // criar nova action para o expenses, para quando clicar no botao ele dispara essa action para detro do reducer (4)
+// // nova action para o expenses Rates, pois seria uma nova requisicao da API salvando o objetao
+// // uma unica action apenas para salvar no estado global apenas as keys do objetao na currencies
+// export const GET_KEYS_DATA = 'GET_KEYS_DATA';
+// export const GET_EXPENSES_RATES = 'GET_EXPENSES_RATES';
+// export const getKeysData = (payload) => ({ type: GET_KEYS_DATA, payload });
+// export const getExpensesRates = (payload) => ({ type: GET_EXPENSES_RATES, payload });

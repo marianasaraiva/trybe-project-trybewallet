@@ -1,62 +1,58 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import requestFetchAPI from '../services/resquestAPI';
-import { fetchAPICurrencies } from '../actions';
+import { connect } from 'react-redux';
 
 export class Forms extends Component {
   constructor() {
     super();
     this.state = {
-      id: 0,
+      // id: 0,
       value: '',
       description: '',
       currency: '',
       method: '',
       tag: '',
-      exchangeRates: [],
-      arrayCurrencies: [],
+      // exchangeRates: [],
     };
     this.handleChange = this.handleChange.bind(this);
-    this.setResultAPISelect = this.setResultAPISelect.bind(this);
   }
 
-  componentDidMount() {
-    this.setResultAPISelect();
-    // const { setFetchAPI } = this.props;
-    // setFetchAPI();
-  }
+  // componentDidMount() {
+  //   this.setResultAPISelect();
+  //   // const { setFetchAPI } = this.props;
+  //   // setFetchAPI();
+  // }
 
-  setResultAPISelect() {
-    requestFetchAPI()
-      .then((response) => {
-        const result = Object.keys(response);
-        this.setState({ arrayCurrencies: result });
-      });
-  }
+  // setResultAPISelect() {
+  //   requestFetchAPI()
+  //     .then((response) => {
+  //       const result = Object.keys(response);
+  //       this.setState({ arrayCurrencies: result });
+  //     });
+  // }
 
   handleChange({ target }) {
     const { name, value } = target;
+    // fazer ternario para pegar o selected para ver se é um option e se está selecionado
     this.setState({
       [name]: value,
     });
   }
 
-  // objCurrencies() {
-  //   const { setFetchAPI} = this.props;
-  //   setFetchAPI();
-  // }
-
   render() {
-    const { arrayCurrencies } = this.state;
-    const { setFetchAPI } = this.props;
+    const { dataWalletState } = this.props;
+    console.log(dataWalletState);
+    const { value, description, currency, method, tag } = this.state;
+
     return (
       <form>
         <label htmlFor="value-input">
           Despesas:
           <input
             type="text"
+            name="value"
             id="value-input"
+            value={ value }
             data-testid="value-input"
             onChange={ this.handleChange }
           />
@@ -66,6 +62,8 @@ export class Forms extends Component {
           Descrição:
           <input
             type="text"
+            name="description"
+            value={ description }
             id="description-input"
             data-testid="description-input"
             onChange={ this.handleChange }
@@ -75,13 +73,15 @@ export class Forms extends Component {
         <label htmlFor="currency-input">
           Moeda:
           <select
-            data-testid="currency-input"
+            name="currency"
+            value={ currency }
             id="currency-input"
+            data-testid="currency-input"
             onChange={ this.handleChange }
           >
-            { arrayCurrencies
-              .filter((e) => e !== 'USDT')
-              .map((e) => <option Key={ e }>{e}</option>)}
+            { Object.keys(dataWalletState)
+              .filter((moeda) => moeda !== 'USDT')
+              .map((moeda) => <option key={ moeda }>{moeda}</option>)}
           </select>
         </label>
 
@@ -89,12 +89,14 @@ export class Forms extends Component {
           Método de pagamento:
           <select
             data-testid="method-input"
+            name="method"
+            value={ method }
             id="method-input"
             onChange={ this.handleChange }
           >
             <option value="dinheiro">Dinheiro</option>
-            <option value="cartaoCredito">Cartão de crédito</option>
-            <option value="cartaoDebito">Cartão de débito</option>
+            <option value="credito">Cartão de crédito</option>
+            <option value="debito">Cartão de débito</option>
           </select>
         </label>
 
@@ -102,6 +104,8 @@ export class Forms extends Component {
           Categoria:
           <select
             data-testid="tag-input"
+            name="tag"
+            value={ tag }
             id="tag-input"
             onChange={ this.handleChange }
           >
@@ -115,30 +119,32 @@ export class Forms extends Component {
 
         <button
           type="button"
-          onClick={ () => {
-            // setFetchAPI: {id, value, description, currency, method, tag, exchangeRates }
-            setFetchAPI(this.state);
-            this.setState((prevState) => ({ id: prevState.id + 1 }));
-          } }
+          name="button-add"
+          id="button-add"
+          // onClick={ () => {
+          //   setFetchAPI(this.state);
+          //   // setFetchAPI({ id, value, description, currency, method, tag, exchangeRates });
+          //   this.setState((prevState) => ({ id: prevState.id + 1 }));
+          // } }
         >
           Adicionar despesa
         </button>
-
       </form>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  getFetchAPI: state.wallet.curriencies,
+  dataWalletState: state.wallet.currencies,
 });
 
-const mapDispatchToProps = (dispacth) => ({
-  setFetchAPI: () => dispacth(fetchAPICurrencies()),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   setFetchAPI: (state) => dispatch(fetchAPICurrencies(state)),
+//   // salvarEstadoGlobal:
+// });
 
 Forms.propTypes = {
-  setFetchAPI: PropTypes.func.isRequired,
+  dataWalletState: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Forms);
+export default connect(mapStateToProps)(Forms);

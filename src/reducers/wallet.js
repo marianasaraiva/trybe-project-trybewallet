@@ -1,4 +1,4 @@
-import { GET_CURRENCIES } from '../actions';
+import { GET_DATA_API, REQUEST_API, GET_EXPENSES } from '../actions';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
@@ -8,28 +8,12 @@ const INITIAL_STATE = {
 
 function wallet(state = INITIAL_STATE, action) {
   switch (action.type) {
-  case GET_CURRENCIES:
+  case REQUEST_API:
+    return { ...state };
+  case GET_DATA_API:
     return { ...state, currencies: action.payload };
-  // case GET_CURRENCIES:
-  //   return {
-  //     ...state,
-  //     expenses: [...state.expenses, action.payload],
-  //   };
-  // case GET_EXPENSIE:
-  //   return { ...state, expensies: action.payload };
-  // case GET_CURRENCIES:
-  //   return {
-  //     ...state,
-  //     currencies: {
-  //       id: action.payload,
-  //       value: action.payload,
-  //       description: action.payload,
-  //       currency: action.payload,
-  //       method: action.payload,
-  //       tag: action.payload,
-  //       exchangesRates: action.payload,
-  //     },
-  //   };
+  case GET_EXPENSES:
+    return { ...state, expenses: [...state.expenses, action.payload] };
   default:
     return state;
   }
