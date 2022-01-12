@@ -28,7 +28,7 @@ export class Header extends Component {
     return (
       <header>
         <h3 data-testid="email-field">{ email }</h3>
-        <p data-testid="total-field">{ this.convertCoinsAndSum() }</p>
+        <p data-testid="total-field">{ (this.convertCoinsAndSum()).toFixed(2) }</p>
         <p data-testid="header-currency-field">BRL</p>
       </header>
     );

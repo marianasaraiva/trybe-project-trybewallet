@@ -5,6 +5,8 @@ import { fetchAPICurrencies, getExpenses } from '../actions';
 
 const task = 'Alimentação';
 
+// Ajuda e discussão da lógica com a colega Nathália Miranda, Gabriel Fontes e Jonatas Passos.
+// Discussão do Requisito na Monitoria Individual com Paulo
 export class Forms extends Component {
   constructor() {
     super();
