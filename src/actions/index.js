@@ -21,6 +21,9 @@ export const fetchAPICurrencies = () => (dispatch) => {
     });
 };
 
+export const DELETE_ITEM_WALLET = 'DELETE_ITEM_WALLET';
+export const deleteItem = (payload) => ({ type: DELETE_ITEM_WALLET, payload });
+
 // Monitoria p/ corrigir o bug
 // // criar nova action para o expenses, para quando clicar no botao ele dispara essa action para detro do reducer (4)
 // // nova action para o expenses Rates, pois seria uma nova requisicao da API salvando o objetao

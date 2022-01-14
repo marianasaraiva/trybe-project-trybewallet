@@ -26,7 +26,6 @@ export class Forms extends Component {
     const { id } = this.state;
     const { dataWalletState, expenses, currencies } = this.props;
     await currencies();
-    // this.setState({ exchangeRates: dataWalletState });
     expenses({ ...this.state, exchangeRates: dataWalletState });
     this.setState({
       id: id + 1,
@@ -87,7 +86,9 @@ export class Forms extends Component {
           >
             { Object.keys(dataWalletState)
               .filter((moeda) => moeda !== 'USDT')
-              .map((moeda) => <option key={ moeda }>{moeda}</option>)}
+              .map((moeda) => (
+                <option key={ moeda } data-testid={ moeda }>{moeda}</option>
+              ))}
           </select>
         </label>
 

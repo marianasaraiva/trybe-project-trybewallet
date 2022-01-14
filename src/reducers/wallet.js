@@ -1,4 +1,4 @@
-import { GET_DATA_API, REQUEST_API, GET_EXPENSES } from '../actions';
+import { GET_DATA_API, REQUEST_API, GET_EXPENSES, DELETE_ITEM_WALLET } from '../actions';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
@@ -14,6 +14,8 @@ function wallet(state = INITIAL_STATE, action) {
     return { ...state, currencies: action.payload };
   case GET_EXPENSES:
     return { ...state, expenses: [...state.expenses, action.payload] };
+  case DELETE_ITEM_WALLET:
+    return { ...state, expenses: action.payload };
   default:
     return state;
   }

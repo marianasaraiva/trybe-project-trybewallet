@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { deleteItem } from '../actions';
 
 export class Table extends Component {
-  render() {
+  handleClick = (event) => {
     const { tableData } = this.props;
-    console.log(tableData);
+    return tableData.filter((e) => Number(e.id) !== Number(event.target.value));
+  }
+
+  render() {
+    const { tableData, deleteItemWallet } = this.props;
 
     return (
-      // https://www.homehost.com.br/blog/criar-sites/tabela-html/
       <table>
         <tr>
           <th>Descrição</th>
@@ -33,6 +37,17 @@ export class Table extends Component {
               {(Number(e.exchangeRates[e.currency].ask) * Number(e.value)).toFixed(2)}
             </td>
             <td>Real</td>
+            <td>
+              <button
+                type="button"
+                data-testid="delete-btn"
+                value={ e.id }
+                onClick={ (event) => deleteItemWallet(this.handleClick(event)) }
+              >
+                Excluir
+                {/* ![image](btnExcluir.gif) */}
+              </button>
+            </td>
           </tr>
         ))}
       </table>
@@ -44,8 +59,13 @@ const mapStateToProps = (state) => ({
   tableData: state.wallet.expenses,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  deleteItemWallet: (payload) => dispatch(deleteItem(payload)),
+});
+
 Table.propTypes = {
   tableData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  deleteItemWallet: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(Table);
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
