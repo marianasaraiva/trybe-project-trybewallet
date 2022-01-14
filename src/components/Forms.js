@@ -147,7 +147,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Forms.propTypes = {
-  dataWalletState: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dataWalletState: PropTypes.instanceOf(Object).isRequired,
   expenses: PropTypes.func.isRequired,
   currencies: PropTypes.func.isRequired,
 };
