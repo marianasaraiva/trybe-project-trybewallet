@@ -19,11 +19,11 @@ Neste projeto foi desenvolvido uma carteira de controle de gastos com conversor 
 
 - Adicionar e remover um gasto;
 - Visualizar uma tabelas com seus gastos;
-- Visualizar o total de gastos convertidos para uma moeda de escolha;
+- Visualizar o total de gastos convertidos para uma moeda de escolha; 
 
 
 ## Instruções para visualizar o projeto:
 
-1. Iniciar o projeto utilizando o `npm start`;
+1. Iniciar o projeto utilizando o `react-scripts start;
 
-2. Acesse pelo link GitPages: 
+2. Acesse pelo link Vercel: https://trybe-trybewallet-marianasaraiva.vercel.app/
