@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAPICurrencies, getExpenses } from '../actions';
+import './Forms.css';
 
 const task = 'Alimentação';
 
@@ -50,7 +51,7 @@ export class Forms extends Component {
     const { value, description, currency, method, tag } = this.state;
 
     return (
-      <form>
+      <form className="form-input">
         <label htmlFor="value-input">
           Despesas:
           <input

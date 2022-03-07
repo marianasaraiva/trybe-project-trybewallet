@@ -1,0 +1,6 @@
+.wallet {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  text-align: center;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteItem } from '../actions';
+import './Table.css';
 
 export class Table extends Component {
   handleClick = (event) => {

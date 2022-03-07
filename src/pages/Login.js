@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions';
+import './Login.css';
+import wallet from '../imagens/wallet2.png';
 
 class Login extends React.Component {
   constructor(props) {
@@ -41,7 +43,11 @@ class Login extends React.Component {
     const { setLogin, history } = this.props;
     return (
       <div>
-        <form>
+        <form className="form-login">
+          <div>
+            <img src={ wallet } alt="carteira" width="250px" />
+            <h1>Trybewallet</h1>
+          </div>
           <label htmlFor="email">
             <input
               name="email"

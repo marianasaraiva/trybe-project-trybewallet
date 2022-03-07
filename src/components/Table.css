@@ -1,0 +1,42 @@
+table {
+  /* display: flex;
+  flex-direction: column; */
+  align-self: flex-start;
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table button {
+  padding: 15px 30px;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-size: large;
+  border-color: #C3A348ff;
+  background-color: #C3A348ff;
+  font-weight: 600;
+  color: #6B442Eff;
+}
+
+thead {
+  /* flex-grow: inherit; */
+  background-color: white;
+  border-bottom: 1px solid #6B442Eff;
+  text-align: center;
+  font-weight: 600;
+} 
+
+tbody {
+  /* flex-grow: inherit; */
+  border-bottom: 1px solid #6B442Eff;
+  text-align: center;
+}
+
+td {
+  padding: 15px;
+}
+
+th {
+  padding: 30px 5px;
+  font-size: 1.1em;
+}

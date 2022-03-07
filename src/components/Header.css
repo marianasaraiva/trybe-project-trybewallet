@@ -1,0 +1,16 @@
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFFFFFff;
+  border: 1px solid #6B442Eff;
+  height: 140px;
+}
+
+header div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 500px;
+}
