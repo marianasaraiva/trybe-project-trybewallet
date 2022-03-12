@@ -27,3 +27,8 @@ Neste projeto foi desenvolvido uma carteira de controle de gastos com conversor 
 1. Iniciar o projeto utilizando o `react-scripts start;
 
 2. Acesse pelo link Vercel: https://trybe-trybewallet-marianasaraiva.vercel.app/
+
+## Gif do projeto:
+<p align="center">
+  <img  src="https://github.com/marianasaraiva/trybe-project-trybewallet/blob/main/Trybewallet.gif" alt="TrybeWallet Gif"/>
+</p>
