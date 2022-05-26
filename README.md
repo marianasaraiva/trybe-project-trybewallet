@@ -1,8 +1,8 @@
-# Projeto Trybewallet
+# :dart: Projeto Trybewallet
 Projeto desenvolvido no bloco 15 de Front-end do curso de Desenvolvimento Web da Trybe.
 
 
-## Habilidades
+## :pushpin: Habilidades
 
 * Criar uma aplicação React usando Redux e Router Dom
   - Criar um store Redux em aplicações React
@@ -13,7 +13,7 @@ Projeto desenvolvido no bloco 15 de Front-end do curso de Desenvolvimento Web da
   - Criar actions assíncronas na sua aplicação React que faz uso de Redux.
 
 
-## O que foi desenvolvido
+## :pushpin: O que foi desenvolvido
 
 Neste projeto foi desenvolvido uma carteira de controle de gastos com conversor de moedas, ao utilizar essa aplicação um usuário deverá ser capaz de:
 
@@ -22,7 +22,7 @@ Neste projeto foi desenvolvido uma carteira de controle de gastos com conversor 
 - Visualizar o total de gastos convertidos para uma moeda de escolha; 
 
 
-## Instruções para visualizar o projeto:
+## :pushpin: Instruções para visualizar o projeto:
 
 1. Iniciar o projeto utilizando o `react-scripts start;
 
