@@ -28,7 +28,7 @@ Neste projeto foi desenvolvido uma carteira de controle de gastos com conversor 
 
 2. Acesse pelo link Vercel: https://trybe-trybewallet-marianasaraiva.vercel.app/
 
-## Gif do projeto:
+## :pushpin: Gif do projeto:
 <p align="center">
   <img  src="https://github.com/marianasaraiva/trybe-project-trybewallet/blob/main/Trybewallet.gif" alt="TrybeWallet Gif"/>
 </p>
